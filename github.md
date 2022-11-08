@@ -54,7 +54,9 @@ Där skriver du en titel vad det är för något du har gjort samt id på backlo
 *#3 Implemented sidebar*
 
 Och sedan skriver en liten snabb text vad det är du har gjort så att reviewern kan kolla att det inte överstyr / skadar något annat och därefter trycker på knappen:
+
 **Create pull request**
+
 Om backlogen är helt klar så behöver du ta bort branchen på din dator efter att du har pushat och gjort en pull request. Hur du gör detta är att du går tillbaks till branch dev som är main branchen för devolopment ( Alla filer går dit ) och gör:
 <pre>git checkout dev
 git pull origin dev</pre>
@@ -66,10 +68,10 @@ där **-D** är delete och **sidebar** är branchen.
 Därefter så kan du börja göra nästa implementation med att skapa en ny branch.
 
 
-***OPS glöm ej göra git pull när någon har mergat det du har implementerat / någon annan har implementerat så att du updaterad med alla filer som är skapade.***
+***OPS glöm ej göra git pull när någon har mergat det du har implementerat / någon annan har implementerat så att du alltid har de updaterade filerna som är skapade.***
 
 ## Settings
-Att sätta regler på branches kan vara väldigt bra. I våran grupp har vi exempelvis regler i både main och dev branchen där man måste exempelvis skapa en pull request innan det går att merga till branchen. Även att man inte kan kringå ovanstående inställningar. I just main branchen har vi den låst då att det inte går att göra någon pull request och den sätts sedan på när dev branchen ska merga till main branchen när vi ska göra en del release på projektet. Vi har även satt default branchen till dev för att det ska vara lättare att göra git pull och även att pull requesten är förinställda på att merga till dev och inte main branchen.
+Att sätta regler på branches kan vara väldigt bra. I våran grupp har vi exempelvis regler i både main och dev branchen där man måste exempelvis skapa en pull request innan det går att merga till branchen. Även att man inte kan kringå ovanstående inställningar. I just main branchen har vi den låst så att det inte går att göra någon pull request för att det inte ska bli något fel. Den sätts sedan på när dev branchen ska merga till main branchen när vi ska göra en del release av projektet. Vi har även satt default branchen till dev för att det ska vara lättare att göra git pull och även att pull requesten är förinställda på att merga till dev och inte main branchen. Det går självklart lägga på striktare regler i sina branches men just nu kör vårat team på lite lättare i början och kanske gör det striktare längre fram under kursens gång.
 
 Nedre bilden visar vilken branch som är satt på default och vilka branches som har protection rules på.
 ![Default branches](/v-teamAssets/branch1.png "Default branches")
