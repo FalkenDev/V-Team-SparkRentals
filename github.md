@@ -85,3 +85,6 @@ Webhooks är väldigt användbart om man ska exempelvis använda sig utav Discor
 ![Discord webhook](/v-teamAssets/webhook.png "Discord webhook")
 
 Hur man sätter upp detta rekomenderar jag att kolla på denna tutorial från jagrosh: https://gist.github.com/jagrosh/5b1761213e33fc5b54ec7f6379034a22
+
+
+***OPS! Mer info om hur man jobbar med Github som ett team kommer läggas in i denna markdown filen vid mån av tid***
