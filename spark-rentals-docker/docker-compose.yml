@@ -88,5 +88,18 @@ services:
       - ./env.d.ts:/types/
       - ./config/config.json:/opt/react_native_app/config/config.json
 
+  user-webb-client:
+    image: falkendev/spark-rentals-webb-client:latest
+    container_name: "user-webb-client"
+    env_file:
+      - "./.env"
+    depends_on:
+    - mongodb_container
+    - server
+    ports:
+      - "3000:3000"
+    networks:
+      sparkrentals:
+
 volumes:
   mongodb_data_container:
