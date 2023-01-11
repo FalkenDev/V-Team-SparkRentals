@@ -43,7 +43,7 @@ services:
       sparkrentals:
 
   scooter-simulation:
-    image: jolpango/scooter-simulation:latest
+    image: jolpango/scooter-simulation:stable
     container_name: "scooter-simulation"
     env_file:
       - "./.env"
@@ -56,7 +56,7 @@ services:
       sparkrentals:
 
   user-simulation:
-    image: jolpango/user-simulation:latest
+    image: jolpango/user-simulation:stable
     container_name: "user-simulation"
     env_file:
       - "./.env"
