@@ -1,0 +1,92 @@
+version: '3.7'
+networks:
+  sparkrentals:
+
+services:
+  mongodb_container:
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword
+    volumes:
+      - mongodb_data_container:/data/db
+      - ./mongod.conf:/etc/mongod.conf
+    container_name: "mongodb"
+    ports:
+      - 27017:27017
+    networks:
+      sparkrentals:
+    entrypoint: ["mongod","--config","/etc/mongod.conf"]
+
+  dataGenerator:
+    image: falkendev/spark-rentals-data-generator:latest
+    container_name: "data-generator"
+    env_file:
+      - "./.env"
+    entrypoint: ["node", "/etc/autoGen.js"]
+    depends_on:
+    - mongodb_container
+    networks:
+      sparkrentals:
+
+  server:
+    image: falkendev/spark-rentals-api:latest
+    ports:
+      - "8393:8393"
+    container_name: "api-server"
+    env_file:
+      - "./.env"
+    restart: "always"
+    depends_on:
+    - mongodb_container
+    networks:
+      sparkrentals:
+
+  scooter-simulation:
+    image: jolpango/scooter-simulation:latest
+    container_name: "scooter-simulation"
+    env_file:
+      - "./.env"
+    depends_on:
+      mongodb_container:
+        condition: service_started
+      dataGenerator:
+        condition: service_completed_successfully
+    networks:
+      sparkrentals:
+
+  user-simulation:
+    image: jolpango/user-simulation:latest
+    container_name: "user-simulation"
+    env_file:
+      - "./.env"
+    depends_on:
+      mongodb_container:
+        condition: service_started
+      scooter-simulation:
+        condition: service_started
+    networks:
+      sparkrentals:
+
+  admin-dashboard:
+    image: jamestjata01/spark-rentals-admin-dashboard:latest
+    container_name: "admin-dashboard"
+    env_file:
+      - "./.env"
+    depends_on:
+    - mongodb_container
+    - server
+    ports:
+      - "1337:3000"
+    networks:
+      sparkrentals:
+
+  expo-dev:
+    image: oscaridberg/spark-rentals-mobile-app:latest
+    volumes:
+      - ./.env:/opt/react_native_app/.env
+      - ./env.d.ts:/types/
+      - ./config/config.json:/opt/react_native_app/config/config.json
+
+volumes:
+  mongodb_data_container:
