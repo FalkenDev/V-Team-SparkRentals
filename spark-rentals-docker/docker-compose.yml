@@ -19,7 +19,7 @@ services:
     entrypoint: ["mongod","--config","/etc/mongod.conf"]
 
   dataGenerator:
-    image: falkendev/spark-rentals-data-generator:latest
+    image: falkendev/spark-rentals-data-generator:stable
     container_name: "data-generator"
     env_file:
       - "./.env"
@@ -30,7 +30,7 @@ services:
       sparkrentals:
 
   server:
-    image: falkendev/spark-rentals-api:latest
+    image: falkendev/spark-rentals-api:stable
     ports:
       - "8393:8393"
     container_name: "api-server"
@@ -69,7 +69,7 @@ services:
       sparkrentals:
 
   admin-dashboard:
-    image: jamestjata01/spark-rentals-admin-dashboard:latest
+    image: jamestjata01/spark-rentals-admin-dashboard:stable
     container_name: "admin-dashboard"
     env_file:
       - "./.env"
@@ -82,14 +82,14 @@ services:
       sparkrentals:
 
   expo-dev:
-    image: oscaridberg/spark-rentals-mobile-app:latest
+    image: oscaridberg/spark-rentals-mobile-app:stable
     volumes:
       - ./.env:/opt/react_native_app/.env
       - ./env.d.ts:/types/
       - ./config/config.json:/opt/react_native_app/config/config.json
 
   user-webb-client:
-    image: falkendev/spark-rentals-webb-client:latest
+    image: falkendev/spark-rentals-webb-client:stable
     container_name: "user-webb-client"
     env_file:
       - "./.env"
